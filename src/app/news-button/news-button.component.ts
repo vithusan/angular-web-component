@@ -13,4 +13,8 @@ export class NewsButtonComponent {
   navigateToNews() {
     this.router.navigate(['/news']);
   }
+
+  navigateToInputBox() {
+    this.router.navigate(['/input']);
+  }
 }
