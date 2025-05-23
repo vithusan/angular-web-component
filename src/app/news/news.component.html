@@ -1,0 +1,7 @@
+<h1>News Component</h1>
+<div *ngIf="articles$ | async as articles">
+  <div *ngFor="let article of articles">
+    <h3>{{ article.title }}</h3>
+    <p>{{ article.description }}</p>
+  </div>
+</div>

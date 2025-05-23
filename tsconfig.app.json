@@ -4,7 +4,13 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": []
+    "types": [],
+    "target": "ES5",
+    "module": "esnext",
+    "moduleResolution": "node"
+  },
+  "angularCompilerOptions": {
+    "enableIvy": false
   },
   "files": [
     "src/main.ts"
