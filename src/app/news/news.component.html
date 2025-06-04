@@ -1,6 +1,17 @@
-<h1>News Component</h1>
+<!-- <h1>News Component</h1>
 <div *ngIf="articles$ | async as articles">
   <div *ngFor="let article of articles">
+    <h3>{{ article.title }}</h3>
+    <p>{{ article.description }}</p>
+  </div>
+</div> -->
+
+
+<h1>News Component</h1>
+<div *ngIf="store.isLoading()">Loading...</div>
+<div *ngIf="store.hasError()">Error: {{ store.error() }}</div>
+<div *ngIf="store.hasArticles()">
+  <div *ngFor="let article of store.articles()">
     <h3>{{ article.title }}</h3>
     <p>{{ article.description }}</p>
   </div>
