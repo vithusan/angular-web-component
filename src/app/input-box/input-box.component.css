@@ -1,3 +1,18 @@
+div {
+  margin: 10px;
+}
+
+input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+p {
+  margin-top: 5px;
+  color: #666;
+}
+
 .input-container {
     display: inline-block;
     margin: 20px;
@@ -15,4 +30,10 @@
 .custom-input:focus {
     border-color: #007bff;
     box-shadow: 0 0 0 2px rgba(0,123,255,.25);
+}
+
+.value-display {
+  margin-top: 8px;
+  color: #333;
+  font-size: 14px;
 }

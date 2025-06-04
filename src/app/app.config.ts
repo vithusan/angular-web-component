@@ -6,6 +6,7 @@ import { newsReducer } from './store/news.reducer';
 import { NewsEffects } from './store/news.effects';
 import { routes } from './app.routes';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,5 +15,12 @@ export const appConfig: ApplicationConfig = {
     provideStore({ news: newsReducer }),
     provideEffects([NewsEffects]),
     provideHttpClient(withFetch()),
+     provideStoreDevtools({
+      maxAge: 25,
+      logOnly: false,
+      autoPause: true,
+      trace: false,
+      traceLimit: 75,
+    }),
   ],
 };

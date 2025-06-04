@@ -522,6 +522,9 @@ var Store = class _Store extends Observable {
     this.source = state$;
     this.state = state$.state;
   }
+  /**
+   * @deprecated Selectors with props are deprecated, for more info see {@link https://github.com/ngrx/platform/issues/2980 Github Issue}
+   */
   select(pathOrMapFn, ...paths) {
     return select.call(null, pathOrMapFn, ...paths)(this);
   }
@@ -530,6 +533,22 @@ var Store = class _Store extends Observable {
    *
    * @param selector selector function
    * @param options select signal options
+   * @returns Signal of the state selected by the provided selector
+   * @usageNotes
+   *
+   * ```ts
+   * const count = this.store.selectSignal(state => state.count);
+   * ```
+   *
+   * Or with a selector created by @ngrx/store!createSelector:function
+   *
+   * ```ts
+   * const selectCount = createSelector(
+   *  (state: State) => state.count,
+   * );
+   *
+   * const count = this.store.selectSignal(selectCount);
+   * ```
    */
   selectSignal(selector, options) {
     return computed(() => selector(this.state()), options);
@@ -1321,6 +1340,7 @@ function createReducer(initialState, ...ons) {
 }
 
 export {
+  toSignal,
   createAction,
   props,
   union,
@@ -1378,4 +1398,4 @@ export {
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-WP2YHB6Y.js.map
+//# sourceMappingURL=chunk-QUGBTKD5.js.map
