@@ -1,0 +1,20 @@
+<div class="news-container">
+  <h2>Top 5 News Articles</h2>
+  
+  <ng-container *ngIf="articles$ | async as articles">
+    <div class="articles-container">
+      <div *ngFor="let article of articles">
+        <h3>{{ article?.title }}</h3>
+        <p>{{ article?.description }}</p>
+      </div>
+    </div>
+  </ng-container>
+
+  <div *ngIf="loading$ | async" class="loading-modal">
+    <div class="loading-content">Loading...</div>
+  </div>
+
+  <div *ngIf="error$ | async as error" class="error-message">
+    Error: {{ error }}
+  </div>
+</div>

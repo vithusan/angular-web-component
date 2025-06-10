@@ -1,18 +1,23 @@
-<!-- <h1>News Component</h1>
-<div *ngIf="articles$ | async as articles">
-  <div *ngFor="let article of articles">
-    <h3>{{ article.title }}</h3>
-    <p>{{ article.description }}</p>
+
+<div class="news-container">
+  <h1>News Component</h1>
+
+    <p>Input Value: {{ inputValue }}</p>
+
+  <div *ngIf="store.isLoading()" class="loading-modal">
+    <div class="loading-content">
+      Loading...
+    </div>
   </div>
-</div> -->
 
+  <div *ngIf="store.hasError()" class="error-message">
+    Error: {{ store.error() }}
+  </div>
 
-<h1>News Component</h1>
-<div *ngIf="store.isLoading()">Loading...</div>
-<div *ngIf="store.hasError()">Error: {{ store.error() }}</div>
-<div *ngIf="store.hasArticles()">
-  <div *ngFor="let article of store.articles()">
-    <h3>{{ article.title }}</h3>
-    <p>{{ article.description }}</p>
+  <div *ngIf="store.hasArticles()" class="articles-container">
+    <div *ngFor="let article of store.articles()" class="article">
+      <h3>{{ article.title }}</h3>
+      <p>{{ article.description }}</p>
+    </div>
   </div>
 </div>

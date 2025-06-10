@@ -17,4 +17,12 @@ export class NewsButtonComponent {
   navigateToInputBox() {
     this.router.navigate(['/input']);
   }
+
+  navigateToNgrxNew() {
+    this.router.navigate(['/news-ngrx'])
+  }
+
+  navigateToStatic() {
+    this.router.navigate(['/static'])
+  }
 }
