@@ -1,11 +1,13 @@
-.news-container {
+news-container {
   padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
+  /* Remove max-width and margin auto to fit in 50% container */
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .loading-modal {
-  position: fixed;
+  /* Change from fixed to absolute */
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;

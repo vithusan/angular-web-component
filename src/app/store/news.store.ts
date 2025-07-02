@@ -29,6 +29,7 @@ export const NewsStore = signalStore(
   withState(initialState),
   withDevtools('articles'),
   withComputed((state) => ({
+    articlesList: computed(() => state.articles),
     hasArticles: computed(() => state.articles().length > 0),
     isLoading: computed(() => state.loading()),
     hasError: computed(() => state.error() !== null),

@@ -29,6 +29,5 @@ export class NewsEffects {
       })
     )
   );
-
   constructor(private actions$: Actions, private dataService: DataService) {}
 }

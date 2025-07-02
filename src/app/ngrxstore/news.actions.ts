@@ -9,3 +9,7 @@ export const loadNewsFailure = createAction(
   '[News] Load News Failure',
   props<{ error: any }>()
 );
+export const addArticles = createAction(
+  '[News] Add Articles',
+  props<{ articles: any[] }>()
+);

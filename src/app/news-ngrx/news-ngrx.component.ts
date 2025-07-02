@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { Observable, tap } from 'rxjs';
 import * as NewsActions from '../ngrxstore/news.actions';
 import * as NewsSelectors from '../ngrxstore/news.selectors';
-import { AppState } from '../ngrxstore/store';
+import { NewsStore } from '../store/news.store';
 
 @Component({
   selector: 'app-news-ngrx',
@@ -18,20 +18,32 @@ export class NewsNgrxComponent implements OnInit {
   loading$!: Observable<boolean>;
   error$!: Observable<any>;
 
-  constructor(private store: Store<AppState>) {
-    this.articles$ = this.store.select(NewsSelectors.selectArticles).pipe(
-      tap(articles => console.log('Articles in component:', articles))
+  private readonly ngrxStore = inject(Store);
+  private readonly signalStore = inject(NewsStore);
+
+  constructor() {
+    this.articles$ = this.ngrxStore.select(NewsSelectors.selectArticles).pipe(
+      tap(articles => console.log('Articles in ngrx component:', articles))
     );
-    this.loading$ = this.store.select(NewsSelectors.selectLoading).pipe(
+    this.loading$ = this.ngrxStore.select(NewsSelectors.selectLoading).pipe(
       tap(loading => console.log('Loading state:', loading))
     );
-    this.error$ = this.store.select(NewsSelectors.selectError).pipe(
+    this.error$ = this.ngrxStore.select(NewsSelectors.selectError).pipe(
       tap(error => console.log('Error state:', error))
     );
+
+    // Reactively sync SignalStore's articles to NgRx store
+    effect(() => {
+      const signalArticles = this.signalStore.articlesList(); // signal
+      const articlesValue = signalArticles(); // get the value
+      if (articlesValue && articlesValue.length === 10) {
+        this.ngrxStore.dispatch(NewsActions.addArticles({ articles: articlesValue }));
+      }
+    });
   }
 
   ngOnInit(): void {
-    console.log('Dispatching loadNews action');
-    this.store.dispatch(NewsActions.loadNews());
+    // 1. Dispatch NgRx fetch (which loads 5 articles)
+    this.ngrxStore.dispatch(NewsActions.loadNews());
   }
 }

@@ -1,10 +1,16 @@
+/* Updated styles for both components to work in side-by-side layout */
+
+/* Component 1 - Updated styles */
 .news-container {
   position: relative;
   padding: 20px;
+  width: 100%; /* Ensure it fits within parent container */
+  box-sizing: border-box; /* Include padding in width calculation */
 }
 
 .loading-modal {
-  position: fixed;
+  /* Change from fixed to absolute to stay within parent container */
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;

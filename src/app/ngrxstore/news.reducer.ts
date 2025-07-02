@@ -22,12 +22,16 @@ export const newsReducer = createReducer(
   })),
   on(NewsActions.loadNewsSuccess, (state, { articles }) => ({
     ...state,
-    articles,
+    articles: [...state.articles, ...articles],
     loading: false
   })),
   on(NewsActions.loadNewsFailure, (state, { error }) => ({
     ...state,
     error,
     loading: false
+  })),
+  on(NewsActions.addArticles, (state, { articles }) => ({
+    ...state,
+    articles: [...state.articles, ...articles] // <-- This APPENDS!
   }))
 );

@@ -1,0 +1,15 @@
+.mainStoreContainer {
+    display: flex;
+    min-height: 100vh; /* Use min-height instead of height */
+    gap: 20px;
+    padding: 20px; /* Optional: outer padding */
+}
+
+.globalContainer,
+.signalContainer {
+    width: 50%;
+    position: relative; /* Important for absolute positioned loading modals */
+    overflow: hidden; /* Prevent content from spilling out */
+    border: 1px solid #ddd; /* Optional: visual separation */
+    border-radius: 8px; /* Optional: rounded corners */
+}
